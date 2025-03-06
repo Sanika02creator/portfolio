@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Bio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: whitesmoke;
+            padding: 90px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            color: indianred;
+        }
+        img {
+            border-radius: 50%;
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        .bio-details {
+            margin: 15px 0;
+        }
+        .bio-details span {
+            font-weight: bold;
+        }
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 19px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to My Personal Bio Page!</h1>
+    
+    <img id="profile-img" src="" alt="https://img.freepik.com/free-vector/hand-drawn-iranian-women-illustration_23-2149856014.jpg">
+
+    
+    <div class="bio-details" id="bio-details">
+        <h2><p><span>Name:</span> <span id="user-name">Not Provided</span></p></h2>
+        <h2><p><span>Profession:</span> <span id="user-profession">Not Provided</span></p></h2>
+        <h2><p><span>Hobbies:</span> <span id="user-hobbies">Not Provided</span></p></h2>
+    </div>
+    
+    <button class="btn" onclick="updateBio()">Update Bio</button>
+</div>
+
+<script>
+    // Function to prompt for user information and display it
+    function collectBioInfo() {
+        let name = prompt("Enter your name:");
+        let profession = prompt("Enter your profession:");
+        let profilePicUrl = prompt("Enter the URL of your profile picture:");
+        let hobbies= prompt("Enter your hobbies")
+
+        // Validate the name (must not be empty)
+        if (name === "" || name === null) {
+            alert("Name cannot be empty. Please try again.");
+            return;
+        }
+        
+        // Validate the profession (must not be empty)
+        if (profession === "" || profession === null) {
+            alert("Profession cannot be empty. Please try again.");
+            return;
+        }
+
+        // Validate the URL (must start with "http" or "https")
+        if (!profilePicUrl.startsWith("http") || !profilePicUrl.endsWith(".jpg") && !profilePicUrl.endsWith(".png")) {
+            alert("Please provide a valid URL for the profile picture.");
+            return;
+        }
+
+         if (hobbies === "" || hobbies === null) {
+            alert("hobbies cannot be empty. Please try again.");
+            return;
+        }
+
+        // Display the collected info using alert()
+        alert(`Name: ${name}\nProfession: ${profession}\nProfile Picture: ${profilePicUrl}`);
+
+        // Log the information to the console
+        console.log("User Info Collected:");
+        console.log("Name:", name);
+        console.log("Profession:", profession);
+        console.log("Profile Picture URL:", profilePicUrl);
+        console.log("Hobbies:",hobbies)
+
+        // Display the info on the page using document.getElementById()
+        document.getElementById("user-name").textContent = name;
+        document.getElementById("user-profession").textContent = profession;
+        document.getElementById("profile-img").src = profilePicUrl;
+        document.getElementById("profile-img").alt = name + "'s Profile Picture";
+        document.getElementById("user-hobbies").textContent = hobbies;
+    }
+
+    // Function to allow the user to update their bio information
+    function updateBio() {
+        collectBioInfo();
+    }
+
+    // Collect initial bio info when the page loads
+    collectBioInfo();
+</script>
+
+</body>
+</html>
